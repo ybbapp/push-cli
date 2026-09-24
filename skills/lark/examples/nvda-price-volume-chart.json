@@ -1,0 +1,77 @@
+{
+  "type": "common",
+  "data": [
+    {
+      "id": "nvda-volume",
+      "values": [
+        { "date": "09-15", "metric": "成交量", "value": 42.1 },
+        { "date": "09-16", "metric": "成交量", "value": 38.4 },
+        { "date": "09-17", "metric": "成交量", "value": 51.7 },
+        { "date": "09-18", "metric": "成交量", "value": 46.2 },
+        { "date": "09-21", "metric": "成交量", "value": 35.9 },
+        { "date": "09-22", "metric": "成交量", "value": 57.3 },
+        { "date": "09-23", "metric": "成交量", "value": 63.8 },
+        { "date": "09-24", "metric": "成交量", "value": 48.6 }
+      ]
+    },
+    {
+      "id": "nvda-price",
+      "values": [
+        { "date": "09-15", "metric": "收盘价", "value": 177.2 },
+        { "date": "09-16", "metric": "收盘价", "value": 180.6 },
+        { "date": "09-17", "metric": "收盘价", "value": 178.9 },
+        { "date": "09-18", "metric": "收盘价", "value": 183.4 },
+        { "date": "09-21", "metric": "收盘价", "value": 185.8 },
+        { "date": "09-22", "metric": "收盘价", "value": 184.1 },
+        { "date": "09-23", "metric": "收盘价", "value": 189.3 },
+        { "date": "09-24", "metric": "收盘价", "value": 192.0 }
+      ]
+    }
+  ],
+  "series": [
+    {
+      "type": "bar",
+      "id": "volume",
+      "dataIndex": 0,
+      "seriesField": "metric",
+      "xField": "date",
+      "yField": "value"
+    },
+    {
+      "type": "line",
+      "id": "price",
+      "dataIndex": 1,
+      "seriesField": "metric",
+      "xField": "date",
+      "yField": "value",
+      "stack": false,
+      "point": { "visible": true }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "left",
+      "type": "linear",
+      "seriesId": ["volume"],
+      "title": { "visible": true, "text": "成交量（百万股）" }
+    },
+    {
+      "orient": "right",
+      "type": "linear",
+      "seriesId": ["price"],
+      "title": { "visible": true, "text": "收盘价（USD）" },
+      "grid": { "visible": false }
+    },
+    {
+      "orient": "bottom",
+      "type": "band"
+    }
+  ],
+  "legends": {
+    "visible": true,
+    "orient": "bottom"
+  },
+  "tooltip": {
+    "trigger": "hover"
+  }
+}
