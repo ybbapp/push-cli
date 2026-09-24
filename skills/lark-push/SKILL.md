@@ -20,6 +20,15 @@ push-cli lark send --title '每日市场报告' --file report.md
 cat report.md | push-cli lark send --title '每日市场报告'
 ```
 
-Optional flags include `--icon` (defaults to 📊) and `--chart-file` for a VChart chart specification. Example chart specifications are in `examples/`.
+Optional flags include `--icon` (defaults to 📊) and `--chart-file` for a VChart chart specification. Example chart specifications are in `examples/`. The CLI reads the file path relative to the current working directory. From the repository root, send a card with a line chart like this:
+
+```sh
+push-cli lark send \
+  --title 'NVDA 行情' \
+  --markdown 'NVDA 收盘价走势' \
+  --chart-file skills/lark-push/examples/nvda-line-chart.json
+```
+
+For the price and volume example, use `skills/lark-push/examples/nvda-price-volume-chart.json`. If this skill was installed separately, pass the path to its `examples/` file (relative to your current directory or as an absolute path).
 
 Configure `LARK_WEBHOOK_URL` in the local `.env` file next to the executable. Treat this URL as a secret. Do not print it or include it in messages.
