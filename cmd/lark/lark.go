@@ -140,19 +140,24 @@ func Run(args []string) error {
 		elements = append(elements, chartJSON)
 	}
 
-	path := *envPath
-	if path == "" {
-		executable, err := os.Executable()
-		if err != nil {
-			return fmt.Errorf("定位可执行文件失败: %w", err)
+	webhook := strings.TrimSpace(os.Getenv("LARK_WEBHOOK_URL"))
+	if webhook == "" {
+		path := strings.TrimSpace(*envPath)
+		if path == "" {
+			path = filepath.Join(".env")
 		}
-		path = filepath.Join(filepath.Dir(executable), ".env")
+		values, err := readEnv(path)
+		if err != nil && *envPath == "" {
+			executable, exeErr := os.Executable()
+			if exeErr == nil {
+				values, err = readEnv(filepath.Join(filepath.Dir(executable), ".env"))
+			}
+		}
+		if err != nil {
+			return err
+		}
+		webhook = strings.TrimSpace(values["LARK_WEBHOOK_URL"])
 	}
-	values, err := readEnv(path)
-	if err != nil {
-		return err
-	}
-	webhook := strings.TrimSpace(values["LARK_WEBHOOK_URL"])
 	u, err := url.Parse(webhook)
 	if err != nil || u.Scheme != "https" || (u.Host != "open.feishu.cn" && u.Host != "open.larksuite.com") || !strings.HasPrefix(u.Path, "/open-apis/bot/v2/hook/") {
 		return errors.New(".env 中 LARK_WEBHOOK_URL 缺失或不是Lark/飞书自定义机器人 webhook")

@@ -1,0 +1,24 @@
+{
+  "name": "@ybbapp/push-cli",
+  "version": "0.0.1-alpha.0",
+  "description": "Small Lark group-bot push CLI for agents",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ybbapp/push-cli.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "push-cli": "bin/push-cli.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
