@@ -1,7 +1,7 @@
 {
   "name": "@ybbapp/push-cli",
   "version": "0.0.1-alpha.0",
-  "description": "Small Lark group-bot push CLI for agents",
+  "description": "One-way messages to Lark group bots.",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
